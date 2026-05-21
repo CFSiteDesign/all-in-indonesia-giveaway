@@ -5,7 +5,6 @@ import { supabase } from "../lib/supabase.js";
 import { asset } from "../lib/asset.js";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
-import BottomNav from "../components/BottomNav.jsx";
 
 // Set to an ISO date string (e.g. "2026-07-01T23:59:59") to show a live
 // countdown. Leave null to show the static urgency line instead.
@@ -132,7 +131,7 @@ export default function Giveaway() {
         <Header />
 
         {/* Content */}
-        <main className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col items-center justify-center gap-7 px-5 pb-24 pt-28 sm:pt-12">
+        <main className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col items-center justify-center gap-7 px-5 pb-12 pt-28 sm:pt-12">
         {done ? (
           <div className="w-full rounded-2xl border border-white/15 bg-white/10 p-8 text-center backdrop-blur-md">
             <h2 className="font-display text-6xl leading-none text-brand">
@@ -283,7 +282,6 @@ export default function Giveaway() {
       </section>
 
       <Footer />
-      <BottomNav />
     </div>
   );
 }

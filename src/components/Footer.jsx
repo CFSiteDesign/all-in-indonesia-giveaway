@@ -108,7 +108,7 @@ function LinkGroup({ heading, links }) {
 export default function Footer() {
   return (
     <footer className="bg-black text-white">
-      <div className="mx-auto max-w-6xl px-6 pt-16 pb-32">
+      <div className="mx-auto max-w-6xl px-6 pt-16 pb-16">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
