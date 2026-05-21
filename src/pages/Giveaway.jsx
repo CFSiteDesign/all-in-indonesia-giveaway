@@ -132,7 +132,7 @@ export default function Giveaway() {
         <Header />
 
         {/* Content */}
-        <main className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col items-center justify-center gap-7 px-5 pb-24 pt-12">
+        <main className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col items-center justify-center gap-7 px-5 pb-24 pt-28 sm:pt-12">
         {done ? (
           <div className="w-full rounded-2xl border border-white/15 bg-white/10 p-8 text-center backdrop-blur-md">
             <h2 className="font-display text-6xl leading-none text-brand">
