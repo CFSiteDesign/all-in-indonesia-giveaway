@@ -163,10 +163,7 @@ export default function Giveaway() {
 
             {/* Offer line */}
             <div className="text-center">
-              <p
-                className="whitespace-nowrap font-semibold text-white"
-                style={{ fontSize: "clamp(10px, 2.9vw, 14px)" }}
-              >
+              <p className="text-balance text-xl font-semibold leading-snug text-white sm:text-2xl">
                 Win the Ultimate Indonesia Experience for you + a mate
               </p>
               <p className="mt-1.5 text-sm text-white/70">
