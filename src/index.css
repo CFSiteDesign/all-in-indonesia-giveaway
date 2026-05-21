@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #000;
+}
+
+/* Lime outline-only display text (e.g. INDONESIA) */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px #c6ff00;
+  text-stroke: 2px #c6ff00;
+}
+
+/* react-phone-number-input — dark glassy theme overrides */
+.phone-field .PhoneInput {
+  width: 100%;
+}
+
+.phone-field .PhoneInputInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.phone-field .PhoneInputInput::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.phone-field .PhoneInputCountryIcon {
+  box-shadow: none;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.phone-field .PhoneInputCountrySelectArrow {
+  color: #fff;
+  opacity: 0.6;
+}
