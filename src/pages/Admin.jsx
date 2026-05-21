@@ -12,8 +12,10 @@ function formatDate(value) {
   });
 }
 
+// The admin account identifier — the login screen only asks for a password.
+const ADMIN_EMAIL = "admin@madmonkeyhostels.com";
+
 function Login() {
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -23,7 +25,7 @@ function Login() {
     setError("");
     setBusy(true);
     const { error } = await supabase.auth.signInWithPassword({
-      email: email.trim(),
+      email: ADMIN_EMAIL,
       password,
     });
     setBusy(false);
@@ -42,16 +44,7 @@ function Login() {
           Mad Monkey — ALL IN Indonesia Giveaway
         </p>
 
-        <div className="mt-7 space-y-3">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            autoComplete="email"
-            required
-            className={fieldClass}
-          />
+        <div className="mt-7">
           <input
             type="password"
             value={password}
