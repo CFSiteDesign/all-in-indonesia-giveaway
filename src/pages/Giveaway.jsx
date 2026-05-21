@@ -163,8 +163,11 @@ export default function Giveaway() {
 
             {/* Offer line */}
             <div className="text-center">
-              <p className="text-lg font-semibold text-white">
-                Win the Ultimate Indonesia Experience for you + a&nbsp;mate
+              <p
+                className="whitespace-nowrap font-semibold text-white"
+                style={{ fontSize: "clamp(10px, 2.9vw, 14px)" }}
+              >
+                Win the Ultimate Indonesia Experience for you + a mate
               </p>
               <p className="mt-1.5 text-sm text-white/70">
                 Enter your details below to go in the draw. We'll contact the
