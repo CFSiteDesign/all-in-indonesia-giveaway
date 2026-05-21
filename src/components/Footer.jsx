@@ -1,5 +1,7 @@
 // Replica of the Mad Monkey site footer.
 
+import { asset } from "../lib/asset.js";
+
 const SITE = "https://madmonkeyhostels.com";
 
 // Footer links — real hrefs taken from the live Mad Monkey site.
@@ -111,7 +113,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <img
-              src="/mm-head-outlined.png"
+              src={asset("mm-head-outlined.png")}
               alt="Mad Monkey"
               className="h-11 w-auto"
             />
@@ -129,7 +131,7 @@ export default function Footer() {
                   className="transition-transform hover:-translate-y-0.5"
                 >
                   <img
-                    src={s.src}
+                    src={asset(s.src)}
                     alt={s.name}
                     className="h-9 w-9 rounded-lg"
                   />

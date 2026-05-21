@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { supabase } from "../lib/supabase.js";
+import { asset } from "../lib/asset.js";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import BottomNav from "../components/BottomNav.jsx";
@@ -120,7 +121,7 @@ export default function Giveaway() {
         <div
           className="absolute inset-0 bg-cover"
           style={{
-            backgroundImage: "url(/hero.jpg)",
+            backgroundImage: `url(${asset("hero.jpg")})`,
             backgroundPosition: "62% center",
           }}
         />

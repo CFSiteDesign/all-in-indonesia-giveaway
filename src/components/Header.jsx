@@ -1,6 +1,7 @@
 // Menu bar — transparent, overlaid on the hero.
 
 import { useState } from "react";
+import { asset } from "../lib/asset.js";
 
 const SITE = "https://madmonkeyhostels.com";
 
@@ -58,7 +59,7 @@ export default function Header() {
           rel="noopener noreferrer"
           aria-label="Mad Monkey"
         >
-          <img src="/mm-logo.webp" alt="Mad Monkey" className="h-9 w-auto" />
+          <img src={asset("mm-logo.webp")} alt="Mad Monkey" className="h-9 w-auto" />
         </a>
 
         {/* Desktop nav */}
