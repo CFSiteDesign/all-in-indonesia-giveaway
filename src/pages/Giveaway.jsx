@@ -180,7 +180,7 @@ export default function Giveaway() {
                 <CountdownUnit value={countdown.minutes} label="Mins" />
               </div>
             ) : (
-              <p className="text-sm font-semibold uppercase tracking-wide text-brand">
+              <p className="text-balance text-xs font-semibold uppercase leading-snug tracking-wide text-brand sm:text-sm">
                 Entries close soon — get your name in the draw.
               </p>
             )}
