@@ -164,7 +164,7 @@ export default function Giveaway() {
             {/* Offer line */}
             <div className="text-center">
               <p className="text-lg font-semibold text-white">
-                Win the Ultimate Indonesia Experience for you + a mate
+                Win the Ultimate Indonesia Experience for you + a&nbsp;mate
               </p>
               <p className="mt-1.5 text-sm text-white/70">
                 Enter your details below to go in the draw. We'll contact the
