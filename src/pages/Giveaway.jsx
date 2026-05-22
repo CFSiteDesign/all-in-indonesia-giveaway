@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import PhoneInput, {
+  isValidPhoneNumber,
+  isPossiblePhoneNumber,
+} from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { supabase } from "../lib/supabase.js";
 import { asset } from "../lib/asset.js";
@@ -48,6 +51,16 @@ function CountdownUnit({ value, label }) {
   );
 }
 
+// Red-box tooltip shown under a field when its value fails validation.
+function FieldError({ children }) {
+  return (
+    <div className="relative mt-2 rounded-lg bg-red-600 px-3 py-2 text-xs font-semibold text-white shadow-lg shadow-red-900/40">
+      <span className="absolute -top-1 left-4 h-2 w-2 rotate-45 rounded-[2px] bg-red-600" />
+      {children}
+    </div>
+  );
+}
+
 const inputClass =
   "w-full rounded-xl border bg-black/40 px-4 py-3 text-white placeholder-white/40 focus:outline-none transition-colors";
 
@@ -77,8 +90,11 @@ export default function Giveaway() {
     }
     if (!whatsapp) {
       next.whatsapp = "Please enter your WhatsApp number.";
+    } else if (!isPossiblePhoneNumber(whatsapp)) {
+      next.whatsapp =
+        "That number doesn't have enough digits for the selected country.";
     } else if (!isValidPhoneNumber(whatsapp)) {
-      next.whatsapp = "Enter a valid number, including country code.";
+      next.whatsapp = "Enter a valid phone number for the selected country.";
     }
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -106,6 +122,7 @@ export default function Giveaway() {
     setSubmitting(false);
 
     if (error) {
+      console.error("Giveaway entry insert failed:", error);
       setSubmitError("Something went wrong. Please try again.");
       return;
     }
@@ -211,12 +228,10 @@ export default function Giveaway() {
                     placeholder="Full name"
                     autoComplete="name"
                     className={`${inputClass} ${
-                      errors.name ? "border-white/70" : "border-white/20"
+                      errors.name ? "border-red-500" : "border-white/20"
                     } focus:border-brand`}
                   />
-                  {errors.name && (
-                    <p className="mt-1.5 text-xs text-white">{errors.name}</p>
-                  )}
+                  {errors.name && <FieldError>{errors.name}</FieldError>}
                 </div>
 
                 <div>
@@ -227,18 +242,16 @@ export default function Giveaway() {
                     placeholder="Email address"
                     autoComplete="email"
                     className={`${inputClass} ${
-                      errors.email ? "border-white/70" : "border-white/20"
+                      errors.email ? "border-red-500" : "border-white/20"
                     } focus:border-brand`}
                   />
-                  {errors.email && (
-                    <p className="mt-1.5 text-xs text-white">{errors.email}</p>
-                  )}
+                  {errors.email && <FieldError>{errors.email}</FieldError>}
                 </div>
 
                 <div>
                   <div
                     className={`phone-field flex items-center rounded-xl border bg-black/40 px-4 py-3 ${
-                      errors.whatsapp ? "border-white/70" : "border-white/20"
+                      errors.whatsapp ? "border-red-500" : "border-white/20"
                     }`}
                   >
                     <PhoneInput
@@ -250,9 +263,7 @@ export default function Giveaway() {
                     />
                   </div>
                   {errors.whatsapp && (
-                    <p className="mt-1.5 text-xs text-white">
-                      {errors.whatsapp}
-                    </p>
+                    <FieldError>{errors.whatsapp}</FieldError>
                   )}
                 </div>
               </div>
@@ -266,9 +277,9 @@ export default function Giveaway() {
               </button>
 
               {submitError && (
-                <p className="mt-3 text-center text-xs text-white">
+                <div className="mt-3 rounded-lg bg-red-600 px-3 py-2 text-center text-xs font-semibold text-white">
                   {submitError}
-                </p>
+                </div>
               )}
 
               <p className="mt-3 text-center text-[0.7rem] leading-snug text-white/50">
