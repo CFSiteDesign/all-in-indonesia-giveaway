@@ -113,17 +113,29 @@ export default function Giveaway() {
     if (!validate()) return;
 
     setSubmitting(true);
-    const { error } = await supabase.from("giveaway_entries").insert({
+    const payload = {
       name: name.trim(),
       email: email.trim(),
       whatsapp,
       source: getSource(),
-    });
+    };
+
+    // Retry a few times so a transient network blip doesn't drop the entry.
+    let error = null;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      ({ error } = await supabase.from("giveaway_entries").insert(payload));
+      if (!error) break;
+      console.error(`Giveaway insert failed (attempt ${attempt}/3):`, error);
+      if (attempt < 3) await new Promise((r) => setTimeout(r, 700));
+    }
     setSubmitting(false);
 
     if (error) {
-      console.error("Giveaway entry insert failed:", error);
-      setSubmitError("Something went wrong. Please try again.");
+      setSubmitError(
+        `Couldn't submit (${
+          error.message || error.code || "network error"
+        }). Please try again.`
+      );
       return;
     }
     setDone(true);
