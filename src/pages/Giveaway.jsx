@@ -131,11 +131,7 @@ export default function Giveaway() {
     setSubmitting(false);
 
     if (error) {
-      setSubmitError(
-        `Couldn't submit (${
-          error.message || error.code || "network error"
-        }). Please try again.`
-      );
+      setSubmitError("Couldn't submit your entry. Please try again.");
       return;
     }
     setDone(true);

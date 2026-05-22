@@ -11,7 +11,7 @@ alter table giveaway_entries enable row level security;
 
 drop policy if exists "public can insert entries" on giveaway_entries;
 create policy "public can insert entries"
-  on giveaway_entries for insert to anon with check (true);
+  on giveaway_entries for insert to anon, authenticated with check (true);
 
 drop policy if exists "admins can read entries" on giveaway_entries;
 create policy "admins can read entries"
